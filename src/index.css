@@ -33,9 +33,6 @@ main:after {
 }
 
 .job-description {
-/*  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;*/
   background: linear-gradient(to right, #ff8008, #ffc837);;
   padding: 10px;
   border: 2px solid lightgray;
@@ -49,4 +46,13 @@ main:after {
 
 .job-description > p {
   margin: 2px;
+}
+
+.loader {
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }

@@ -4,6 +4,7 @@ import JobDetail from './JobDetail'
 import { fetchJobs } from '../utils/api'
 import Switch from './Switch'
 import Header from './Header'
+import Loading from './Loading'
 
 export default class Job extends React.Component {
   constructor(props) {
@@ -13,10 +14,7 @@ export default class Job extends React.Component {
       hasError: false,
       loading: true,
       remote: false,
-      value: null,
     }
-
-    this.onlyRemoteJobs = this.onlyRemoteJobs.bind(this)
     this.toggleRemote = this.toggleRemote.bind(this)
   }
 
@@ -36,17 +34,19 @@ export default class Job extends React.Component {
       })
   }
 
-  onlyRemoteJobs() {
-    this.setState({ remote: true })
-  }
-
   toggleRemote() {
+
     this.setState(state => ({
-      remote: !state.remote
+      loading: !state.loading
     }))
+
+    setTimeout(() => {
+      this.setState(state => ({
+        remote: !state.remote,
+        loading: !state.loading
+      }))
+    }, 1000)
   }
-
-
 
   render() {
     const { jobs, hasError, loading, remote } = this.state
@@ -60,13 +60,16 @@ export default class Job extends React.Component {
       <React.Fragment>
       <Header remote={remote} />
       <Switch toggleRemote={this.toggleRemote}/>
-      <main>
-        {loading ? <p>Loading...</p> :
-          remote
-            ? jobs && jobs.filter(j => j.remote).map(j => <JobDetail key={j.hashid} job={j}/>)
-            : jobs && jobs.map(j => <JobDetail key={j.hashid} job={j}/>)
+      { loading ?
+        <Loading /> :
+        <main>
+        { remote
+          ? jobs && jobs.filter(j => j.remote).map(j => <JobDetail key={j.hashid} job={j}/>)
+          : jobs && jobs.map(j => <JobDetail key={j.hashid} job={j}/>)
         }
-      </main>
+        </main>
+      }
+
       </React.Fragment>
     )
   }
