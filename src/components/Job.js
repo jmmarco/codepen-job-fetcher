@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { fetchJobs } from './utils/api'
-// import PropTypes from 'prop-types'
+import JobDetail from './JobDetail'
+import { fetchJobs } from '../utils/api'
+import Switch from './Switch'
+import Header from './Header'
 
 export default class Job extends React.Component {
   constructor(props) {
@@ -10,9 +12,12 @@ export default class Job extends React.Component {
       jobs: null,
       hasError: false,
       loading: true,
+      remote: false,
+      value: null,
     }
 
     this.onlyRemoteJobs = this.onlyRemoteJobs.bind(this)
+    this.toggleRemote = this.toggleRemote.bind(this)
   }
 
   componentDidMount() {
@@ -32,13 +37,20 @@ export default class Job extends React.Component {
   }
 
   onlyRemoteJobs() {
-    const { jobs } = this.state
-    return jobs && jobs.filter(j => j.remote)
+    this.setState({ remote: true })
+  }
+
+  toggleRemote() {
+    this.setState(state => ({
+      remote: !state.remote
+    }))
   }
 
 
+
   render() {
-    const { jobs, hasError, loading } = this.state
+    const { jobs, hasError, loading, remote } = this.state
+
 
     if (hasError) {
       <h1>Something went wrong!</h1>
@@ -46,23 +58,19 @@ export default class Job extends React.Component {
 
     return (
       <React.Fragment>
-
+      <Header remote={remote} />
+      <Switch toggleRemote={this.toggleRemote}/>
+      <main>
         {loading ? <p>Loading...</p> :
-
-          jobs.map(j => {
-            return (
-            <div className="job-description" key={j.hashid}>
-              <h3>{j.company_name}</h3>
-              <p>{j.title === '' ? 'None' : j.title}</p>
-              <p>Description: {j.description === '' ? 'None' : j.description}</p>
-              <p>Featured text: {j.featured_text === '' ? 'None' : j.featured_text}</p>
-              <p>Url: {j.url === '' ? 'N/A' : <a href={j.url}>{j.url}</a>}</p>
-              <p>Location: {j.location === '' ? 'None' : j.location}</p>
-            </div>
-            )
-          })
+          remote
+            ? jobs && jobs.filter(j => j.remote).map(j => <JobDetail key={j.hashid} job={j}/>)
+            : jobs && jobs.map(j => <JobDetail key={j.hashid} job={j}/>)
         }
+      </main>
       </React.Fragment>
     )
   }
 }
+
+
+

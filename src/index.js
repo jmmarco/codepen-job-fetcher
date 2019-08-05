@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Job from './Job'
+import Job from './components/Job'
 
 class App extends React.Component {
 

@@ -1,0 +1,112 @@
+/* Switcher Credit: https://codepen.io/jo-asakura/ */
+
+:root {
+  --height: calc(30 / 16 * 1em);
+  --width: calc(72 / 16 * 1em);
+  --color-white: #fefefe;
+  --color-clouds: #ecf0f1;
+  --color-silver: #bdc3c7;
+  --color-peter-river: #3498db;
+  --color-carrot: #e67e22;
+  --transition-default: 0.25s ease-out 0.10s;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.button-switch {
+  align-self: center;
+  font-size: 1.5em;
+  height: var(--height);
+  margin-bottom: calc(10 / 16 * 1em);
+  position: relative;
+  width: var(--width);
+}
+
+.button-switch .lbl-off,.lbl-on {
+  cursor: pointer;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1em;
+  position: absolute;
+  top: calc(8 / 16 * 1em);
+  transition: opacity var(--transition-default);
+  text-transform: uppercase;
+}
+
+.button-switch .lbl-off {
+  right: calc(7 / 16 * 1em);
+}
+
+.button-switch .lbl-on {
+  color: var(--color-white);
+  opacity: 0;
+  left: calc(7 / 16 * 1em);
+}
+
+.button-switch  .switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 0;
+  font-size: 1em;
+  left: 0;
+  line-height: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+
+.button-switch .switch:before, .button-switch .switch:after {
+  content: '';
+  font-size: 1em;
+  position: absolute;
+}
+
+
+.button-switch .switch:before {
+  border-radius: 1.25em;
+  background: var(--color-silver);
+  height: 1.875em;
+  left: -0.25em;
+  top: -0.1875em;
+  transition: background-color var(--transition-default);
+  width: 4.5em;
+}
+
+
+.button-switch .switch:after {
+  box-shadow: 0 .0625em .375em 0 #666;
+  border-radius: 50%;
+  background: var(--color-white);
+  height: 1.5em;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  transition: -webkit-transform 0.25s ease-out 0.1s;
+  transition: transform 0.25s ease-out 0.1s;
+  transition: transform 0.25s ease-out 0.1s,
+  -webkit-transform 0.25s ease-out 0.1s;
+  width: 1.5em;
+}
+
+.button-switch .switch:checked:after {
+  -webkit-transform: translate(2.5em, 0);
+  transform: translate(2.5em, 0);
+}
+.button-switch .switch:checked ~ .lbl-off {
+  opacity: 0;
+}
+.button-switch .switch:checked ~ .lbl-on {
+  opacity: 1;
+}
+.button-switch .switch#switch-orange:checked:before {
+  background: var(--color-carrot);
+}
+.button-switch .switch#switch-blue:checked:before {
+  background: var(--color-peter-river);
+}
+
