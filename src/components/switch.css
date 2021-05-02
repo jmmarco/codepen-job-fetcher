@@ -8,7 +8,7 @@
   --color-silver: #bdc3c7;
   --color-peter-river: #3498db;
   --color-carrot: #e67e22;
-  --transition-default: 0.25s ease-out 0.10s;
+  --transition-default: 0.25s ease-out 0.1s;
 }
 
 *,
@@ -26,7 +26,8 @@
   width: var(--width);
 }
 
-.button-switch .lbl-off,.lbl-on {
+.button-switch .lbl-off,
+.lbl-on {
   cursor: pointer;
   display: block;
   font-size: 0.9em;
@@ -48,7 +49,7 @@
   left: calc(7 / 16 * 1em);
 }
 
-.button-switch  .switch {
+.button-switch .switch {
   -webkit-appearance: none;
   -moz-appearance: none;
   height: 0;
@@ -61,12 +62,12 @@
   width: 0;
 }
 
-.button-switch .switch:before, .button-switch .switch:after {
-  content: '';
+.button-switch .switch:before,
+.button-switch .switch:after {
+  content: "";
   font-size: 1em;
   position: absolute;
 }
-
 
 .button-switch .switch:before {
   border-radius: 1.25em;
@@ -78,9 +79,8 @@
   width: 4.5em;
 }
 
-
 .button-switch .switch:after {
-  box-shadow: 0 .0625em .375em 0 #666;
+  box-shadow: 0 0.0625em 0.375em 0 #666;
   border-radius: 50%;
   background: var(--color-white);
   height: 1.5em;
@@ -89,7 +89,7 @@
   transition: -webkit-transform 0.25s ease-out 0.1s;
   transition: transform 0.25s ease-out 0.1s;
   transition: transform 0.25s ease-out 0.1s,
-  -webkit-transform 0.25s ease-out 0.1s;
+    -webkit-transform 0.25s ease-out 0.1s;
   width: 1.5em;
 }
 
@@ -109,4 +109,3 @@
 .button-switch .switch#switch-blue:checked:before {
   background: var(--color-peter-river);
 }
-

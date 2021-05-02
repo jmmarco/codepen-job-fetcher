@@ -1,19 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import Job from './components/Job'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Job from "./components/Job";
 
 class App extends React.Component {
-
   render() {
     return (
       <React.Fragment>
         <Job />
       </React.Fragment>
-    )
+    );
   }
-
 }
 
-
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById("app"));

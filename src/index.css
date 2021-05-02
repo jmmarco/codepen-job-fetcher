@@ -1,6 +1,10 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(to right, #1d976c, #93f9b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    #1d976c,
+    #93f9b9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #app {
@@ -28,12 +32,12 @@ main {
 }
 
 main:after {
-  content: '';
+  content: "";
   align-self: flex-start;
 }
 
 .job-description {
-  background: linear-gradient(to right, #ff8008, #ffc837);;
+  background: linear-gradient(to right, #ff8008, #ffc837);
   padding: 10px;
   border: 2px solid lightgray;
   border-radius: 4px;
@@ -55,4 +59,11 @@ main:after {
   font-size: 4rem;
   font-weight: 300;
   letter-spacing: 0.5px;
+}
+
+.error {
+  text-align: center;
+  letter-spacing: 0.05rem;
+  font-size: 4rem;
+  color: crimson;
 }
